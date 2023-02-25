@@ -25,7 +25,7 @@ app.use("/api/messages",messageroute)
 const PORT=process.env.PORT || 5000
 
 /*const dburl='mongodb://0.0.0.0:27017/chat'*/
-/*const dburl='mongodb+srv://PRADEEP123:'+encodeURIComponent('Knight@9026')+'@cluster0.x5jbf4w.mongodb.net/chat?retryWrites=true&w=majority'*/
+/*const dburl='mongodb+srv://PRADEEP123:'+encodeURIComponent('chlajabsdk')+'@cluster0.x5jbf4w.mongodb.net/chat?retryWrites=true&w=majority'*/
 const dburl=process.env.db_url
  
 
