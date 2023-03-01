@@ -20,6 +20,9 @@ module.exports.signup=async (req,res,next)=>{
     if(emailcheck)
     return res.json({msg:"Entered Email is already registered",status:false})
     const hashedpassword=await bcrypt.hash(password,10)
+    const passwordcheck=await User.findOne({hashedpassword})
+    if(passwordcheck)
+    return res.json({msg:"please choose another password",status:false})
     const user=await User.create({
         email,
         username,
@@ -38,7 +41,7 @@ module.exports.login=async (req,res,next)=>{
     try{
         const {username,email,password}=req.body
 
-    const user=await User.findOne({username})
+    const user=await User.findOne({$or: [{ email }, { username }]})
     if(!user)
     return res.json({msg:"This username is not registered!    note: username and email  are case sensitive",status:false})
 
@@ -47,8 +50,16 @@ module.exports.login=async (req,res,next)=>{
     return res.json({msg:"this email is not registered  note: username and email  are case sensitive",status:false})
 
     const ispassswordvalid=await bcrypt.compare(password,user.password)
-    if(!ispassswordvalid)
-    return res.json({msg:"wrong password",status:false})
+    const isPasswordValidWithEmail = await bcrypt.compare(password, user.password);
+    const isPasswordValidWithUsername = await bcrypt.compare(password, mail.password);
+
+    if(!isPasswordValidWithEmail && isPasswordValidWithUsername){
+    return res.json({msg:"Username is not registered with this email",status:false})
+    }
+    if(isPasswordValidWithEmail && !isPasswordValidWithUsername)
+    return res.json({msg:"Email is not registered with this username",status:false})
+    if(!isPasswordValidWithEmail && !isPasswordValidWithUsername)
+    return res.json({msg:"Wrong Password",status:false})
     delete user.password
     
     return res.json({status:true,user})
