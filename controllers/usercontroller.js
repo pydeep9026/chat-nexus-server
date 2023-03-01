@@ -20,9 +20,6 @@ module.exports.signup=async (req,res,next)=>{
     if(emailcheck)
     return res.json({msg:"Entered Email is already registered",status:false})
     const hashedpassword=await bcrypt.hash(password,10)
-    const passwordcheck=await User.findOne({hashedpassword})
-    if(passwordcheck)
-    return res.json({msg:"please choose another password",status:false})
     const user=await User.create({
         email,
         username,
