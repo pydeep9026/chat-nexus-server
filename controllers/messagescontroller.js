@@ -48,6 +48,6 @@ module.exports.deletemessage=async (req,next)=>{
         console.log(receiver)  
         await messagemodel.deleteMany({users: receiver});
     }catch(ex){
-        next(ex)
+         next(ex)
     }
 }
