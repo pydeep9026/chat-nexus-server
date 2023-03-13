@@ -5,7 +5,7 @@
 
 # Chat Nexus
 
-Chat Nexus is a web-based chat application that allows users to communicate with each other in real-time.
+Chat Nexus is a web-based chat application that allows users to communicate with  each other in real-time.
 <br>
   <br>
 
