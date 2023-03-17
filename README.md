@@ -11,7 +11,7 @@ Chat Nexus is a web-based chat application that allows users to communicate with
 
 ## 🚀 Features
 
--💬 Real-time messaging <br>
+-💬 Real-time messaging <br> 
 - 🔐 User Authentication (Register / Login) <br>
 - 💬 Real-time messaging using Socket.io <br>
 - 🗑️ Delete account <br>
