@@ -53,7 +53,7 @@ const server=app.listen(process.env.PORT,()=>{
 
 const io =socket(server,{      
     cors:{
-        origin:"https://chatnexus.tech",
+        origin:"https://piehost.com",
         Credentials:true,
     }  
 })       
